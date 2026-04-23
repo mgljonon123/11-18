@@ -1,25 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Serif+Text:ital@0;1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 :root {
-  --font-1: "Public Sans", sans-serif;
-  --font-2: "DM Serif Display", serif;
+  --font-1: "Inter", sans-serif;
+  --font-2: "Space Grotesk", sans-serif;
 
-  /* monospace
-    */
-  --font-mono: Consolas, "Andale Mono", Courier, "Courier New", monospace;
+  /* monospace */
+  --font-mono: "JetBrains Mono", Consolas, "Andale Mono", Courier, "Courier New", monospace;
 }
 
 :root {
-  --color-1: hsla(36, 72%, 70%, 1);
-  --color-2: hsla(168, 62%, 36%, 1);
-  --color-1-lighter: hsla(36, 72%, 90%, 1);
-  --color-1-light: hsla(36, 72%, 80%, 1);
-  --color-1-dark: hsla(36, 72%, 60%, 1);
-  --color-1-darker: hsla(36, 72%, 50%, 1);
-  --color-2-lighter: hsla(168, 62%, 56%, 1);
-  --color-2-light: hsla(168, 62%, 46%, 1);
-  --color-2-dark: hsla(168, 62%, 26%, 1);
-  --color-2-darker: hsla(168, 62%, 16%, 1);
+  --color-1: hsla(180, 100%, 50%, 1); /* Tech Cyan */
+  --color-2: hsla(222, 47%, 11%, 1); /* Deep Space Navy */
+  --color-1-lighter: hsla(180, 100%, 90%, 1);
+  --color-1-light: hsla(180, 100%, 80%, 1);
+  --color-1-dark: hsla(180, 100%, 40%, 1);
+  --color-1-darker: hsla(180, 100%, 30%, 1);
+  --color-2-lighter: hsla(222, 47%, 21%, 1);
+  --color-2-light: hsla(222, 47%, 16%, 1);
+  --color-2-dark: hsla(222, 47%, 6%, 1);
+  --color-2-darker: hsla(222, 47%, 3%, 1);
   --color-error: hsla(359, 100%, 91%, 1);
   --color-success: hsla(76, 69%, 68%, 1);
   --color-info: hsla(205, 82%, 91%, 1);
@@ -68,9 +67,9 @@
   --color-preloader-bg: var(--color-gray-10);
   --color-loader: white;
   --color-loader-light: rgba(255, 255, 255, 0.1);
-  --color-body: var(--color-gray-10);
-  --color-border: rgba(255, 255, 255, 0.05);
-  --border-radius: 3px;
+  --color-body: #020617; /* Slate 950 transition */
+  --color-border: rgba(0, 247, 255, 0.1);
+  --border-radius: 4px;
 }
 :root {
   --base-size: 62.5%;
@@ -3998,39 +3997,139 @@ img.u-pull-left {
     transform: translateY(0);
 }
 
-.certificate-list .folio-list__proj-link svg path {
-    fill: black;
+/* ===================================================================
+ * # ACHIEVEMENTS
+ *
+ * ------------------------------------------------------------------- */
+.s-achievements {
+    padding-top: var(--vspace-5);
+    padding-bottom: var(--vspace-5);
+    background-color: var(--color-gray-19);
 }
 
-/* Responsive adjustment for vertical list */
-@media screen and (max-width: 900px) {
-    .certificate-list .folio-list__item-link {
+.achievements-list {
+    margin-top: var(--vspace-3);
+}
+
+.achievement-card {
+    display: flex;
+    align-items: center;
+    gap: 4.8rem;
+    padding: 4.8rem;
+    margin-bottom: 4rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-1);
+    box-shadow: 0 10px 30px -10px rgba(0, 247, 255, 0.1);
+}
+
+.achievement-card:hover::before {
+    opacity: 1;
+}
+
+.achievement-card__pic {
+    flex: 0 0 320px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card__pic img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+    object-fit: cover;
+}
+
+.achievement-card:hover .achievement-card__pic img {
+    transform: scale(1.05);
+}
+
+.achievement-card__text {
+    flex: 1;
+}
+
+.achievement-card__cat {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-1);
+    margin-bottom: 1.2rem;
+}
+
+.achievement-card__title {
+    margin-top: 0;
+    margin-bottom: 1.6rem;
+    color: var(--color-white);
+    font-size: 3.2rem;
+}
+
+.achievement-card__description {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: var(--color-gray-4);
+    margin: 0;
+}
+
+/* ===================================================================
+ * # TESTIMONIALS
+ *
+ * ------------------------------------------------------------------- */
+.s-testimonials {
+    padding-top: var(--vspace-4);
+    padding-bottom: var(--vspace-5);
+    background-color: var(--color-body);
+}
+
+/* Responsive adjustment for Achievement Cards */
+@media screen and (max-width: 1000px) {
+    .achievement-card {
         flex-direction: column;
+        align-items: flex-start;
         gap: 3.2rem;
         padding: 3.2rem;
     }
-    
-    .certificate-list .folio-list__item-pic {
+
+    .achievement-card__pic {
         flex: none;
         width: 100%;
-    }
-    
-    .certificate-list .folio-list__item-pic img {
-        height: auto;
-        aspect-ratio: 4/3;
+        max-width: 500px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .certificate-list .folio-list__item {
-        margin-bottom: 4rem;
+    .achievement-card {
+        padding: 2.4rem;
     }
-    
-    .certificate-list .folio-list__item-title {
+
+    .achievement-card__title {
         font-size: 2.4rem;
     }
-    
-    .certificate-list .folio-list__item-description {
+
+    .achievement-card__description {
         font-size: 1.6rem;
     }
 }
